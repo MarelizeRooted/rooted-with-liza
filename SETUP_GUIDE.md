@@ -1,190 +1,264 @@
 # Pre-Launch Setup Checklist
 
-## Step 1: Supabase Setup
-
-### 1.1 Create Supabase Project
-1. Go to [supabase.com](https://supabase.com) and create an account
-2. Click "New Project"
-3. Name it "Rooted With Liza"
-4. Select a region (closest to your users)
-5. Save the generated password somewhere safe
-6. Wait for the project to be created
-
-### 1.2 Get API Keys
-1. In your Supabase project, go to **Settings** → **API**
-2. Copy the following:
-   - **Project URL**: `NEXT_PUBLIC_SUPABASE_URL`
-   - **anon/public key**: `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - **service_role key**: `SUPABASE_SERVICE_ROLE_KEY` (under "Service role")
-
-### 1.3 Run Database Migration
-1. Go to **SQL Editor** in Supabase
-2. Copy the contents of `supabase/migrations/00001_initial_schema.sql`
-3. Paste and run the SQL
-4. This creates all tables, indexes, RLS policies, and seed data
-
-### 1.4 Create .env.local
-Create a file named `.env.local` in the project root:
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
+## ✅ CODE STATUS
+Your Rooted With Liza platform code is **READY** and committed to git. You just need to push it to GitHub and configure the external services.
 
 ---
 
-## Step 2: Stripe Setup
+## STEP 1: Push Code to GitHub
 
-### 2.1 Create Stripe Account
-1. Go to [stripe.com](https://stripe.com) and create an account
-2. Complete account verification
+### 1.1 Create GitHub Repository
+1. Go to [github.com](https://github.com) and log in
+2. Click the **+** icon (top right) → **New repository**
+3. Name it: `rooted-with-liza`
+4. Make it **Public** or **Private** as you prefer
+5. **DO NOT** initialize with README (we already have code)
+6. Click **Create repository**
 
-### 2.2 Get API Keys
-1. Go to **Developers** → **API keys**
-2. Copy:
-   - **Publishable key**: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-   - **Secret key**: `STRIPE_SECRET_KEY`
+### 1.2 Push to GitHub
+Once created, run these commands in your terminal:
 
-### 2.3 Create Products & Pricing
-In Stripe Dashboard:
-
-#### Rooted Core - R299/month
-1. Go to **Products** → **Add Product**
-2. Name: "Rooted Core Membership"
-3. Price: R299/month (enter as ZAR, Stripe handles currency)
-4. Billing period: Monthly
-5. Copy the **Price ID**
-
-#### Rooted Plus - R599/month
-1. Same steps
-2. Name: "Rooted Plus Membership"
-3. Price: R599/month
-
-#### Rooted Family - R999/month
-1. Same steps
-2. Name: "Rooted Family Membership"
-3. Price: R999/month
-
-### 2.4 Set Up Webhooks (for production)
-1. Go to **Developers** → **Webhooks**
-2. Add endpoint
-3. URL: `https://yourdomain.com/api/webhooks/stripe`
-4. Select events:
-   - `checkout.session.completed`
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `invoice.payment_failed`
-5. Copy the **Webhook Secret**: `STRIPE_WEBHOOK_SECRET`
-
----
-
-## Step 3: Run the Application
-
-### 3.1 Install Dependencies
 ```bash
 cd /home/bossie1/Downloads/rooted-with-liza
-npm install
-```
 
-### 3.2 Start Development Server
-```bash
-npm run dev
-```
+# Add the remote (use YOUR username)
+git remote add origin https://github.com/MarelizeRooted/rooted-with-liza.git
 
-### 3.3 Test Locally
-Open [http://localhost:3000](http://localhost:3000)
-
----
-
-## Step 4: Create Supabase Auth (Auth UI)
-
-### 4.1 Enable Auth Providers
-1. In Supabase, go to **Authentication** → **Providers**
-2. Enable **Email** provider (keep password enabled)
-3. Configure email templates under **Authentication** → **Email Templates**
-
-### 4.2 Update Redirect URLs
-1. Go to **Authentication** → **URL Configuration**
-2. Add: `http://localhost:3000/login` and `http://localhost:3000/dashboard`
-
----
-
-## Step 5: Create Storage Buckets
-
-### 5.1 Create Public Bucket
-1. In Supabase, go to **Storage**
-2. Create bucket named: `products`
-3. Make it **Public**
-
-### 5.2 Create Restricted Bucket
-1. Create bucket named: `protected`
-2. This will store member-only files
-
----
-
-## Step 6: Vercel Deployment
-
-### 6.1 Push to GitHub
-1. Create a new GitHub repository
-2. Initialize git and push:
-```bash
-cd /home/bossie1/Downloads/rooted-with-liza
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/rooted-with-liza.git
+# Push the code
+git branch -M main
 git push -u origin main
 ```
 
-### 6.2 Deploy to Vercel
-1. Go to [vercel.com](https://vercel.com)
-2. Import the GitHub repository
-3. Add environment variables from `.env.local`
-4. Deploy
+---
 
-### 6.3 Update Supabase Redirect URLs
-Add production URL to Supabase redirect URLs:
-- `https://rooted-with-liza.vercel.app`
+## STEP 2: Supabase Setup
+
+### 2.1 Create Supabase Project
+1. Go to [supabase.com](https://supabase.com) and create an account
+2. Click **New Project**
+3. Name it: "Rooted With Liza"
+4. Select a region closest to South Africa
+5. Save the generated database password somewhere safe
+6. Wait for project creation (~2 minutes)
+
+### 2.2 Get API Keys
+1. In your Supabase project, go to **Settings** → **API**
+2. Copy these values:
+   - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
+   - **anon/public key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - **service_role key** → `SUPABASE_SERVICE_ROLE_KEY`
+
+### 2.3 Run Database Migration
+1. Go to **SQL Editor** in Supabase
+2. Click **New query**
+3. Open file: `supabase/migrations/00001_initial_schema.sql`
+4. Copy ALL contents into the SQL editor
+5. Click **Run** (or press Ctrl+Enter)
+6. You should see "Success" for all statements
+
+### 2.4 Configure Authentication
+1. Go to **Authentication** → **Providers**
+2. Ensure **Email** is enabled (keep password enabled)
+3. Go to **Authentication** → **URL Configuration**
+4. Add these sites to **Redirect URLs**:
+   - `http://localhost:3000` (for local testing)
+   - `http://localhost:3000/login`
+   - `http://localhost:3000/dashboard`
+   - `https://rooted-with-liza.vercel.app` (after Vercel deploy)
+
+### 2.5 Create Storage Buckets
+1. Go to **Storage** in Supabase
+2. Create bucket named: `products` → make it **Public**
+3. Create bucket named: `protected` → keep it **Private**
 
 ---
 
-## Step 7: Final Testing Checklist
+## STEP 3: Paystack Setup (Active Payment Provider)
 
+### 3.1 Create Paystack Account
+1. Go to [paystack.com](https://paystack.com)
+2. Click **Sign Up** → use your email
+3. Complete verification (need to verify for live payments)
+
+### 3.2 Get API Keys
+1. Go to **Dashboard** → **Settings** → **API Keys**
+2. Copy:
+   - **Public Key** → `PAYSTACK_PUBLIC_KEY`
+   - **Secret Key** → `PAYSTACK_SECRET_KEY`
+
+### 3.3 Configure Webhook
+1. Go to **Settings** → **Webhooks**
+2. Click **Add Webhook**
+3. URL: `https://yourdomain.com/api/payments/webhook`
+   - For local testing: use ngrok (instructions below)
+   - For production: your Vercel URL
+4. Select events: `charge.success`, `charge.failed`
+
+### 3.4 Test with Paystack Demo
+- Use test mode first
+- Test card: `5524 0800 0000 0016` (success)
+- Test card: `5524 0800 0000 0017` (fail)
+
+---
+
+## STEP 4: Local Development Setup
+
+### 4.1 Create .env.local
+Create a file named `.env.local` in the project root:
+
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+# Paystack (Active)
+PAYMENT_PROVIDER=paystack
+PAYSTACK_PUBLIC_KEY=pk_test_your-key
+PAYSTACK_SECRET_KEY=sk_test_your-key
+
+# Stripe (Future - optional for now)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+### 4.2 Install & Run
+```bash
+cd /home/bossie1/Downloads/rooted-with-liza
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to preview.
+
+---
+
+## STEP 5: Vercel Deployment
+
+### 5.1 Connect to Vercel
+1. Go to [vercel.com](https://vercel.com)
+2. Sign up with GitHub
+3. Click **Add New** → **Project**
+4. Import your `rooted-with-liza` repository
+5. Click **Deploy**
+
+### 5.2 Add Environment Variables
+Before deploying, add all variables from `.env.local`:
+
+| Name | Value |
+|------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Your Supabase service key |
+| `PAYMENT_PROVIDER` | `paystack` |
+| `PAYSTACK_PUBLIC_KEY` | Your Paystack public key |
+| `PAYSTACK_SECRET_KEY` | Your Paystack secret key |
+| `NEXT_PUBLIC_APP_URL` | Your Vercel URL (e.g., `https://rooted-with-liza.vercel.app`) |
+
+### 5.3 Update Paystack Webhook
+After getting your Vercel URL:
+1. Go to Paystack Dashboard → Settings → Webhooks
+2. Add: `https://rooted-with-liza.vercel.app/api/payments/webhook`
+
+### 5.4 Update Supabase Redirect URLs
+1. Go to Supabase → Authentication → URL Configuration
+2. Add your Vercel URL to redirect URLs
+
+---
+
+## STEP 6: Make Yourself Admin
+
+### 6.1 Create Admin User
+1. Go to your live site → Sign Up
+2. Complete signup with your email
+
+### 6.2 Grant Admin Role
+1. Go to Supabase → **Table Editor** → **profiles**
+2. Find your user row
+3. Edit `role` column → change to `admin`
+4. Save
+
+Now you can access `/admin` dashboard.
+
+---
+
+## STEP 7: Final Testing Checklist
+
+### Public Pages
 - [ ] Home page loads correctly
 - [ ] Navigation works on all pages
-- [ ] Lead magnet form submits and captures email
-- [ ] Signup creates a user account
+- [ ] Lead magnet form captures emails
+- [ ] Signup creates user account
 - [ ] Login authenticates user
-- [ ] Admin dashboard is accessible (add admin role to user manually in Supabase)
-- [ ] Products display with correct pricing
-- [ ] Membership page shows all tiers
+- [ ] Membership page shows all 3 tiers
+- [ ] Shop page displays products
+- [ ] Bootcamp page shows bootcamps
+- [ ] About page displays content
+- [ ] Blog page loads
 - [ ] Mobile responsive on all pages
+
+### Admin Dashboard
+- [ ] `/admin` dashboard loads
+- [ ] User list displays
+- [ ] Product management works
+- [ ] Lead magnet signups viewable
+
+### Payments
+- [ ] Test Paystack payment flow works
+- [ ] Payment success page displays
+- [ ] Payment cancel page displays
+- [ ] Orders are recorded in database
 
 ---
 
-## Quick Commands
+## Local Testing with Webhooks (Optional)
+
+To test Paystack webhooks locally, use ngrok:
 
 ```bash
-# Start development
-npm run dev
+# Install ngrok (if needed)
+npm install -g ngrok
 
-# Build for production
-npm run build
+# Run ngrok to get a public URL
+ngrok http 3000
 
-# Start production server
-npm start
-
-# Lint code
-npm run lint
+# Use the https URL from ngrok in Paystack webhook settings
 ```
+
+---
+
+## Quick Reference
+
+| Service | Website | Key Docs |
+|---------|---------|----------|
+| Supabase | supabase.com | supabase.com/docs |
+| Paystack | paystack.com | paystack.com/docs |
+| Vercel | vercel.com | vercel.com/docs |
+| GitHub | github.com | docs.github.com |
+
+---
+
+## Missing Items to Complete Before Launch
+
+These items require your input:
+
+1. **Paystack Account** - Need to create account and get API keys
+2. **Supabase Account** - Need to create project and run migration
+3. **Vercel Account** - Need to connect GitHub and deploy
+4. **Product Content** - Add real products, images, descriptions
+5. **Blog Content** - Create actual blog posts
+6. **Legal Pages** - Create Privacy Policy and Terms of Service pages
+7. **Domain Name** - Optionally point your own domain to Vercel
 
 ---
 
 ## Need Help?
 
-If you're stuck on any step, let me know which step and what error you're seeing.
+If you're stuck on any step:
+1. Note which step number
+2. Describe what you see (error message or unexpected behavior)
+3. I'll help you troubleshoot
