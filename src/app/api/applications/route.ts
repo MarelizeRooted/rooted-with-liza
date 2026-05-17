@@ -29,6 +29,16 @@ interface Application {
   commitment: boolean
 }
 
+// Convert camelCase to snake_case
+function toSnakeCase(obj: Record<string, unknown>): Record<string, unknown> {
+  const result: Record<string, unknown> = {}
+  for (const key in obj) {
+    const snakeKey = key.replace(/([A-Z])/g, '_$1').toLowerCase()
+    result[snakeKey] = obj[key]
+  }
+  return result
+}
+
 async function sendApplicationNotification(application: Application) {
   const resend = getResend()
   const adminEmail = process.env.ADMIN_EMAIL || 'hello@rootedwithliza.co.za'
@@ -79,12 +89,15 @@ async function sendApplicationNotification(application: Application) {
 export async function POST(request: NextRequest) {
   try {
     const supabase = getSupabase()
-    const body: Application = await request.json()
+    const body = await request.json()
+
+    // Convert camelCase to snake_case
+    const application = toSnakeCase(body) as unknown as Application
 
     // Validate required fields
     const requiredFields = ['parent_name', 'email', 'phone', 'teen_name', 'teen_age', 'teen_grade', 'what_struggling', 'heard_about']
     for (const field of requiredFields) {
-      if (!body[field as keyof Application]) {
+      if (!application[field as keyof Application]) {
         return NextResponse.json(
           { error: `Missing required field: ${field}` },
           { status: 400 }
@@ -94,7 +107,7 @@ export async function POST(request: NextRequest) {
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(body.email)) {
+    if (!emailRegex.test(application.email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
@@ -105,15 +118,15 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase
       .from('applications')
       .insert({
-        parent_name: body.parent_name,
-        email: body.email,
-        phone: body.phone,
-        teen_name: body.teen_name,
-        teen_age: body.teen_age,
-        teen_grade: body.teen_grade,
-        what_struggling: body.what_struggling,
-        heard_about: body.heard_about,
-        commitment: body.commitment,
+        parent_name: application.parent_name,
+        email: application.email,
+        phone: application.phone,
+        teen_name: application.teen_name,
+        teen_age: application.teen_age,
+        teen_grade: application.teen_grade,
+        what_struggling: application.what_struggling,
+        heard_about: application.heard_about,
+        commitment: application.commitment,
         status: 'pending',
       })
       .select()
@@ -128,7 +141,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification (don't fail if email fails)
-    await sendApplicationNotification(body)
+    await sendApplicationNotification(application)
 
     return NextResponse.json(
       { success: true, data },
