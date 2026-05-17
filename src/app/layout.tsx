@@ -2,9 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Rooted With Liza | Structured Support for Teens & Parents',
-  description: 'A structured resilience and study support system for overwhelmed teens and parents. Study systems, exam preparation, emotional resilience training, and parental guidance.',
-  keywords: ['teen study support', 'exam preparation', 'burnout recovery', 'parent guidance', 'resilience training', 'South Africa'],
+  title: 'Rooted With Liza | Faith-Grounded Mentorship for Teens & Families',
+  description: 'A mentorship community helping teens build unshakeable inner foundations. Weekly sessions, emotional resilience training, and parent support.',
+  keywords: ['teen mentorship', 'resilience training', 'parent support', 'homeschool', 'South Africa'],
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -15,10 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <div className="paper-texture fixed inset-0 z-50" aria-hidden="true" />
-        <div className="relative z-10 flex-1 flex flex-col">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   )
