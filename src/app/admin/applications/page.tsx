@@ -6,7 +6,9 @@ import { Navigation } from '@/components/layout/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, CheckCircle, Clock, XCircle, MessageCircle, ExternalLink } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { ArrowLeft, CheckCircle, Clock, XCircle, MessageCircle, Send, Mail } from 'lucide-react'
 
 interface Application {
   id: string
@@ -23,10 +25,111 @@ interface Application {
   created_at: string
 }
 
+interface EmailModalProps {
+  app: Application
+  onClose: () => void
+  onSent: () => void
+}
+
+function EmailModal({ app, onClose, onSent }: EmailModalProps) {
+  const [subject, setSubject] = useState(`ROOTED Circle Application - ${app.parent_name}`)
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSend = async () => {
+    setSending(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: app.email,
+          subject,
+          message: message || `Hi ${app.parent_name},\n\nThank you for your application to ROOTED Circle. I'd love to learn more about your family and how we might support ${app.teen_name}.\n\nWould you be available for a brief call this week?\n\nWarmly,\nLiza`,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send')
+      }
+      
+      setSent(true)
+      setTimeout(() => {
+        onSent()
+        onClose()
+      }, 1500)
+    } catch (err) {
+      setError('Failed to send email. Please try again.')
+    } finally {
+      setSending(false)
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <Card className="bg-white max-w-lg w-full max-h-[90vh] overflow-y-auto">
+        <CardHeader className="sticky top-0 bg-white border-b">
+          <div className="flex items-center justify-between">
+            <CardTitle className="font-serif flex items-center gap-2">
+              <Mail className="h-5 w-5" />
+              Send Email to {app.parent_name}
+            </CardTitle>
+            <Button variant="ghost" size="sm" onClick={onClose}>✕</Button>
+          </div>
+        </CardHeader>
+        <CardContent className="p-6 space-y-4">
+          <div>
+            <label className="text-sm font-medium text-charcoal mb-1 block">To:</label>
+            <p className="text-warm-gray">{app.email}</p>
+          </div>
+          
+          <Input
+            label="Subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            placeholder="Email subject"
+          />
+          
+          <Textarea
+            label="Message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={8}
+            placeholder="Enter your message or leave blank for a default message"
+          />
+          
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          
+          {sent && <p className="text-green-600 text-sm">Email sent!</p>}
+          
+          <div className="flex gap-3 pt-4">
+            <Button variant="outline" onClick={onClose} className="flex-1">
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleSend} 
+              disabled={sending || sent}
+              className="flex-1 bg-olive text-cream hover:bg-olive-dark"
+            >
+              {sending ? 'Sending...' : sent ? 'Sent!' : 'Send Email'}
+              {!sending && !sent && <Send className="h-4 w-4 ml-2" />}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
 export default function ApplicationsAdminPage() {
   const [applications, setApplications] = useState<Application[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedApp, setSelectedApp] = useState<Application | null>(null)
+  const [emailApp, setEmailApp] = useState<Application | null>(null)
   const [filter, setFilter] = useState<'all' | 'pending' | 'contacted' | 'accepted' | 'declined'>('all')
 
   useEffect(() => {
@@ -202,15 +305,14 @@ export default function ApplicationsAdminPage() {
                         >
                           View Details
                         </Button>
-                        <a 
-                          href={`mailto:${app.email}?subject=ROOTED Circle Application`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => setEmailApp(app)}
+                          className="text-olive"
                         >
-                          <Button variant="ghost" size="sm">
-                            <ExternalLink className="h-4 w-4" />
-                          </Button>
-                        </a>
+                          <Mail className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
@@ -306,17 +408,16 @@ export default function ApplicationsAdminPage() {
 
                 {/* Actions */}
                 <div className="flex gap-3 pt-4 border-t">
-                  <a 
-                    href={`mailto:${selectedApp.email}?subject=ROOTED Circle Application - ${selectedApp.parent_name}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1"
+                  <Button 
+                    onClick={() => {
+                      setEmailApp(selectedApp)
+                      setSelectedApp(null)
+                    }} 
+                    className="flex-1 bg-olive text-cream hover:bg-olive-dark"
                   >
-                    <Button className="w-full bg-olive text-cream hover:bg-olive-dark">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Send Email
-                    </Button>
-                  </a>
+                    <Mail className="h-4 w-4 mr-2" />
+                    Send Email
+                  </Button>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">
@@ -357,6 +458,15 @@ export default function ApplicationsAdminPage() {
               </CardContent>
             </Card>
           </div>
+        )}
+
+        {/* Email Modal */}
+        {emailApp && (
+          <EmailModal 
+            app={emailApp} 
+            onClose={() => setEmailApp(null)} 
+            onSent={() => {}} 
+          />
         )}
       </main>
     </>

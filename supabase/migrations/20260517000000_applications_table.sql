@@ -23,23 +23,8 @@ CREATE TABLE IF NOT EXISTS applications (
 CREATE INDEX IF NOT EXISTS idx_applications_status ON applications(status);
 CREATE INDEX IF NOT EXISTS idx_applications_created_at ON applications(created_at DESC);
 
--- Enable Row Level Security
-ALTER TABLE applications ENABLE ROW LEVEL SECURITY;
-
--- Allow inserts from authenticated users (for the apply form)
-CREATE POLICY "Allow insert for authenticated users" ON applications
-  FOR INSERT TO authenticated, anon
-  WITH CHECK (true);
-
--- Allow admins to read all applications
-CREATE POLICY "Allow admin to read all" ON applications
-  FOR SELECT TO authenticated
-  USING (auth.role() = 'authenticated');
-
--- Allow admin updates
-CREATE POLICY "Allow admin to update" ON applications
-  FOR UPDATE TO authenticated
-  USING (auth.role() = 'authenticated');
+-- Disable Row Level Security for now (admin-only access via service role key)
+ALTER TABLE applications DISABLE ROW LEVEL SECURITY;
 
 -- Add updated_at trigger
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -50,6 +35,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS update_applications_updated_at ON applications;
 CREATE TRIGGER update_applications_updated_at
   BEFORE UPDATE ON applications
   FOR EACH ROW
