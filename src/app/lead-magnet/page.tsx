@@ -7,28 +7,38 @@ import { Footer } from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Download, CheckCircle, ArrowRight, FileText, Calendar, Users, Heart } from 'lucide-react'
+import { Download, CheckCircle, ArrowRight, FileText, Calendar, Users, Heart, Focus } from 'lucide-react'
 
 const kitContents = [
   {
     icon: Calendar,
-    title: 'The 5-Day Gentle Reset',
+    title: 'A simple study structure that doesn\'t require perfection',
     description: 'A structured daily plan to help your teen pause, breathe, and find their footing again. No pressure, just presence.',
   },
   {
-    icon: FileText,
-    title: 'The Sunday Reset Template',
-    description: 'A printable weekly planning tool designed for overwhelmed students. Simple, calm, and effective.',
+    icon: Focus,
+    title: 'Focus tips for distraction-prone brains',
+    description: 'Simple frameworks for planning, revision, and managing workload without burnout.',
   },
   {
     icon: Heart,
-    title: 'The Parent Pause',
-    description: 'A short guide for parents on regulated breathing and quiet presence. Sometimes the best thing you can do is just be there.',
+    title: 'Gentle exam stress support',
+    description: 'Tools for managing stress, building confidence, and recovering from setbacks.',
+  },
+  {
+    icon: FileText,
+    title: 'A realistic weekly routine template',
+    description: 'A printable weekly planning tool designed for overwhelmed students. Simple, calm, and effective.',
   },
   {
     icon: Users,
-    title: 'The First Step Quiz',
-    description: 'A reflection tool to help your teen (and you) understand what is really going on beneath the surface.',
+    title: 'Reflection prompts and encouragement',
+    description: 'A reflection tool to help your teen understand what is really going on beneath the surface.',
+  },
+  {
+    icon: Heart,
+    title: 'Faith-grounded perspective (without the preachiness)',
+    description: 'Quiet, thoughtful perspective rooted in hope—not preachiness.',
   },
 ]
 
@@ -81,12 +91,11 @@ export default function FreeStarterKitPage() {
                 A free gift for families
               </p>
               <h1 className="text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-6">
-                The Free Starter Kit
+                The Overwhelmed Teen Starter Kit
               </h1>
               <p className="text-warm-gray text-lg leading-relaxed mb-8">
-                A gentle beginning for families who are tired of fighting against 
-                overwhelm. No commitment, no pressure. Just practical tools to help 
-                you pause, breathe, and take the first step.
+                A free practical guide for teens who feel stuck, stressed, or behind—and 
+                the parents who want to help.
               </p>
             </div>
           </div>
@@ -98,7 +107,7 @@ export default function FreeStarterKitPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-serif font-semibold text-charcoal mb-4">What's Inside</h2>
               <p className="text-warm-gray max-w-xl mx-auto">
-                Four practical resources designed for real families facing real challenges.
+                Six practical resources designed for real families facing real challenges.
               </p>
             </div>
             
@@ -136,8 +145,7 @@ export default function FreeStarterKitPage() {
                       Check Your Email
                     </h2>
                     <p className="text-warm-gray mb-6 leading-relaxed">
-                      Your Free Starter Kit is on its way. Look for an email from Rooted with Liza 
-                      with everything you need to get started.
+                      Check your inbox—your Starter Kit is on its way. I hope it helps.
                     </p>
                     <p className="text-sm text-warm-gray mb-8">
                       While you wait, feel free to learn more about{' '}

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Rooted With Liza | Faith-Grounded Mentorship for Teens & Families',
-  description: 'A mentorship community helping teens build unshakeable inner foundations. Weekly sessions, emotional resilience training, and parent support.',
-  keywords: ['teen mentorship', 'resilience training', 'parent support', 'homeschool', 'South Africa'],
+  title: 'ROOTED Circle | Study & Resilience Mentoring for Overwhelmed Teens',
+  description: 'Weekly mentoring for overwhelmed teens struggling with procrastination, exam stress, and low confidence. Practical study support, resilience coaching, and faith-grounded encouragement. Apply now.',
+  keywords: ['teen mentorship', 'study skills', 'resilience training', 'overwhelmed teens', 'homeschool support', 'South Africa'],
   icons: {
     icon: '/favicon.svg',
   },

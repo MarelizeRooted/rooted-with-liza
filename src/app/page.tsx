@@ -3,47 +3,26 @@ import { Navigation } from '@/components/layout/navigation'
 import { Footer } from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRight, Heart, Users, Sparkles, Moon, Sun, Shield } from 'lucide-react'
+import { ArrowRight, Heart, Users, Sparkles, Moon, Sun, Shield, CheckCircle } from 'lucide-react'
 
-const principles = [
-  {
-    icon: Heart,
-    title: "You Are Not Alone",
-    description: "The overwhelm your teen feels—and the helplessness you feel watching them—it's real. But struggling doesn't mean failing.",
-  },
-  {
-    icon: Shield,
-    title: "Roots Before Results",
-    description: "We build internal foundation first: emotional resilience, self-understanding, quiet confidence. Everything else grows from there.",
-  },
-  {
-    icon: Moon,
-    title: "Rest Is Not Weakness",
-    description: "Sustainable success comes from rhythm, not burnout. We teach teens to honour their limits while reaching for their potential.",
-  },
-  {
-    icon: Sun,
-    title: "Faith Is Central",
-    description: "Our work is rooted in the belief that lasting change comes from connecting with something greater than ourselves.",
-  },
+const whoItsFor = [
+  "Procrastinate constantly and leave everything to the last minute",
+  "Feel behind and don't know how to catch up",
+  "Shut down or get emotional when schoolwork piles up",
+  "Struggle to focus and get distracted easily",
+  "Feel anxious or panicked before tests and exams",
+  "Have lost confidence in their ability to succeed",
+  "Know what they should do but can't seem to start",
+  "Need structure, encouragement, and someone who actually gets it",
 ]
 
-const testimonials = [
-  {
-    quote: "For the first time, my daughter spoke about feeling 'grounded' instead of just surviving. The shift was palpable. Liza doesn't just teach—she walks alongside.",
-    author: "Carla",
-    role: "Mother to Emma, 15",
-  },
-  {
-    quote: "I didn't know how to help my son without making things worse. ROOTED gave me language, tools, and most importantly, hope. We both breathed again.",
-    author: "David",
-    role: "Father to Luke, 16",
-  },
-  {
-    quote: "The weekly sessions became something I looked forward to. Not because they're easy, but because they're honest. Real tools for real struggles.",
-    author: "Amara",
-    role: "18 years old, Grade 12",
-  },
+const framework = [
+  { step: "01", title: "Understand the overwhelm", desc: "We start by naming what's really going on, not just the symptoms" },
+  { step: "02", title: "Build sustainable structure", desc: "Simple routines that fit real life, not impossible ideals" },
+  { step: "03", title: "Learn to focus", desc: "Practical strategies for attention, environment, and energy" },
+  { step: "04", title: "Develop confidence under pressure", desc: "Tools for exams, deadlines, and moments that feel too big" },
+  { step: "05", title: "Strengthen emotional resilience", desc: "How to recover from bad days, setbacks, and disappointment" },
+  { step: "06", title: "Grow into consistency", desc: "Moving from short bursts of effort to steady, lasting habits" },
 ]
 
 export default function HomePage() {
@@ -54,36 +33,32 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <section className="relative min-h-[80vh] flex items-center overflow-hidden">
-          {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-cream via-linen to-sand/30" />
           
           <div className="container-main relative z-10 py-24">
             <div className="max-w-2xl">
               <p className="text-olive font-medium text-sm tracking-wide mb-6 fade-in">
-                A mentorship community for teens and families
+                Weekly mentoring for overwhelmed teens
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-charcoal leading-tight mb-8 fade-in stagger-1">
-                When the pressure feels 
-                <span className="block text-olive mt-2">too heavy to carry</span>
+                When teenagers feel constantly behind, even small tasks start to feel impossible.
               </h1>
               
               <p className="text-lg md:text-xl text-warm-gray mb-10 max-w-xl leading-relaxed fade-in stagger-2">
-                ROOTED Circle is a monthly programme where teens learn to build unshakeable 
-                inner foundations—and parents learn to walk alongside them with confidence, 
-                not fear.
+                ROOTED Circle is weekly mentoring for overwhelmed teens navigating procrastination, exam stress, shutdown, and self-doubt.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 fade-in stagger-3">
-                <Link href="/rooted-circle">
+                <Link href="/apply">
                   <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark w-full sm:w-auto">
-                    Discover ROOTED Circle
+                    Apply for ROOTED Circle
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/free-starter-kit">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-olive text-olive hover:bg-olive/5">
-                    Start with Free Kit
+                  <Button variant="outline" size="lg" className="border-olive text-olive hover:bg-olive/5 w-full sm:w-auto">
+                    Get the Free Starter Kit
                   </Button>
                 </Link>
               </div>
@@ -91,54 +66,101 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Introduction Section */}
+        {/* The Problem Section */}
         <section className="section-padding bg-white">
           <div className="container-main">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-8">
-                At the heart of Rooted
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-8 text-center">
+                When "just try harder" stops working
               </h2>
-              <p className="text-lg text-warm-gray leading-relaxed mb-6">
-                I started Rooted because I kept seeing the same story repeat: capable teens 
-                crumbling under pressure, parents desperate to help but unsure how, and a 
-                system that rewards output over wellbeing.
-              </p>
-              <p className="text-lg text-warm-gray leading-relaxed mb-8">
-                ROOTED Circle isn't about getting better grades or pushing harder. It's about 
-                building something deeper—the kind of resilience that holds steady when 
-                life gets hard, that knows its worth beyond achievements, that can rest 
-                without guilt and try without fear.
-              </p>
-              <p className="text-lg text-charcoal font-medium">
-                This is work that changes the whole family.
-              </p>
+              
+              <div className="prose prose-lg text-warm-gray space-y-6">
+                <p>
+                  You've watched your teen shut down before exams. Avoid homework until midnight. 
+                  Say they'll start tomorrow—again.
+                </p>
+                <p>
+                  It's easy to call it laziness. But most overwhelmed teens aren't unmotivated. 
+                  They're anxious, discouraged, or so far behind they don't know where to begin.
+                </p>
+                <p>
+                  They don't need another lecture. They need someone in their corner—someone who 
+                  understands what overwhelm actually feels like, and knows how to help them find their footing again.
+                </p>
+                <p className="text-charcoal font-medium text-xl">
+                  That's what ROOTED Circle is for.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Principles Section */}
+        {/* ROOTED Circle Overview */}
         <section className="section-padding bg-linen">
           <div className="container-main">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-4">
-                What we believe
-              </h2>
-              <p className="text-warm-gray max-w-xl mx-auto">
-                Not just what we do, but why we do it this way.
-              </p>
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-6">
+                  Structured weekly mentoring for teens who feel stuck
+                </h2>
+                <div className="prose prose-lg text-warm-gray space-y-4">
+                  <p>
+                    ROOTED Circle is a small-group mentoring membership where overwhelmed teens meet 
+                    weekly for live guidance, practical study support, and resilience coaching.
+                  </p>
+                  <p>
+                    This isn't tutoring. It's not a course you watch alone. It's consistent, 
+                    caring mentorship that helps your teen build the habits, routines, and emotional 
+                    strength they need to show up for themselves—week after week.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {[
+                  "Weekly live mentoring sessions",
+                  "Practical study systems",
+                  "Accountability check-ins",
+                  "Resilience and mindset support",
+                  "Printable planners and guides",
+                  "Faith-grounded encouragement"
+                ].map((item, i) => (
+                  <Card key={i} className="bg-white border-none">
+                    <CardContent className="p-4 flex items-center gap-4">
+                      <CheckCircle className="h-5 w-5 text-olive flex-shrink-0" />
+                      <span className="text-charcoal">{item}</span>
+                    </CardContent>
+                  </Card>
+                ))}
+                <div className="pt-4">
+                  <Link href="/rooted-circle">
+                    <Button className="bg-olive text-cream hover:bg-olive-dark">
+                      Learn More About ROOTED Circle
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* Who This Is For */}
+        <section className="section-padding bg-white">
+          <div className="container-main">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal text-center mb-4">
+              This is for your teen if they...
+            </h2>
+            <p className="text-warm-gray text-center mb-12 max-w-2xl mx-auto">
+              If any of this sounds familiar, your teen isn't broken. They just need the right kind of support.
+            </p>
             
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {principles.map((principle, i) => (
-                <Card key={i} className="bg-white border-none shadow-soft">
-                  <CardContent className="p-8">
-                    <principle.icon className="h-10 w-10 text-olive mb-5" />
-                    <h3 className="text-xl font-serif font-semibold text-charcoal mb-3">
-                      {principle.title}
-                    </h3>
-                    <p className="text-warm-gray leading-relaxed">
-                      {principle.description}
-                    </p>
+            <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              {whoItsFor.map((item, i) => (
+                <Card key={i} className="bg-linen border-none">
+                  <CardContent className="p-5 flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-olive flex-shrink-0 mt-0.5" />
+                    <span className="text-charcoal">{item}</span>
                   </CardContent>
                 </Card>
               ))}
@@ -146,79 +168,46 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ROOTED Circle Preview */}
+        {/* The Framework */}
         <section className="section-padding bg-olive text-cream">
           <div className="container-main">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <p className="text-sage font-medium text-sm tracking-wide mb-4">
-                  The Programme
-                </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
-                  ROOTED Circle
-                </h2>
-                <p className="text-cream/80 text-lg leading-relaxed mb-8">
-                  A monthly mentorship community for teens ready to build unshakeable inner 
-                  foundations—and parents ready to support without adding pressure.
-                </p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Weekly group mentorship sessions",
-                    "Emotional resilience framework",
-                    "Sustainable study systems",
-                    "Monthly parent workshop included",
-                    "Private teen community",
-                    "Direct access to Liza"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-cream/90">
-                      <Sparkles className="h-5 w-5 text-sage flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/rooted-circle">
-                  <Button size="lg" variant="secondary" className="bg-cream text-olive hover:bg-beige border-0">
-                    Learn About ROOTED Circle
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-              
-              <div className="bg-olive-dark/30 rounded-2xl p-10 text-center">
-                <p className="text-cream/60 mb-3 text-sm uppercase tracking-wider">Investment</p>
-                <p className="text-5xl font-serif font-bold text-cream mb-2">R1,497</p>
-                <p className="text-cream/70 mb-8">per month</p>
-                <p className="text-cream/80 text-sm leading-relaxed mb-8">
-                  This includes everything: teen sessions, parent workshops, 
-                  community access, and resource library.
-                </p>
-                <Link href="/apply">
-                  <Button className="bg-cream text-olive hover:bg-beige w-full">
-                    Apply for ROOTED Circle
-                  </Button>
-                </Link>
-              </div>
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-4 text-center">
+              How we help teens move from overwhelmed to grounded
+            </h2>
+            <p className="text-cream/80 text-center mb-12 max-w-2xl mx-auto">
+              This isn't a rigid programme. It's a mentoring relationship that meets your teen 
+              where they are and helps them grow from there.
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {framework.map((item, i) => (
+                <Card key={i} className="bg-olive-dark/30 border-0">
+                  <CardContent className="p-6">
+                    <span className="text-4xl font-serif font-bold text-cream/20 mb-4 block">{item.step}</span>
+                    <h3 className="text-lg font-serif font-semibold text-cream mb-2">{item.title}</h3>
+                    <p className="text-cream/70 text-sm">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Free Starter Kit CTA */}
+        {/* Pricing Preview */}
         <section className="section-padding bg-sand/30">
           <div className="container-main">
-            <div className="max-w-2xl mx-auto text-center">
-              <p className="text-olive font-medium text-sm tracking-wide mb-4">
-                Not ready to commit?
-              </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-6">
-                Start with the Free Starter Kit
+            <div className="max-w-xl mx-auto text-center">
+              <p className="text-olive font-medium text-sm tracking-wide mb-4">Founding Member Pricing</p>
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-4">
+                R1,497/month
               </h2>
-              <p className="text-warm-gray text-lg leading-relaxed mb-8">
-                A 5-day gentle reset plan, study schedule template, and parent guide—completely free. 
-                No commitment, no pressure. Just practical tools to help you pause and reset.
+              <p className="text-warm-gray mb-8">
+                ROOTED Circle is premium, small-group mentoring—not a course you watch alone 
+                or a once-off workshop. Spots are limited to keep the group small and the support personal.
               </p>
-              <Link href="/free-starter-kit">
+              <Link href="/apply">
                 <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark">
-                  Download Free Kit
+                  Apply for ROOTED Circle
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -226,68 +215,23 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* Free Starter Kit CTA */}
         <section className="section-padding bg-white">
           <div className="container-main">
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal text-center mb-16">
-              What families are saying
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, i) => (
-                <Card key={i} className="bg-linen border-none">
-                  <CardContent className="p-8">
-                    <p className="text-charcoal italic mb-6 font-accent text-lg leading-relaxed">
-                      "{testimonial.quote}"
-                    </p>
-                    <div>
-                      <p className="font-medium text-charcoal">{testimonial.author}</p>
-                      <p className="text-sm text-warm-gray">{testimonial.role}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Who Is This For */}
-        <section className="section-padding bg-cream">
-          <div className="container-main">
-            <div className="grid lg:grid-cols-2 gap-16">
-              <Card className="bg-white border-none">
-                <CardContent className="p-10">
-                  <Users className="h-10 w-10 text-olive mb-6" />
-                  <h3 className="text-2xl font-serif font-semibold text-charcoal mb-4">
-                    For Parents
-                  </h3>
-                  <p className="text-warm-gray leading-relaxed mb-6">
-                    You love your teen fiercely. But lately, it feels like nothing you do 
-                    makes a difference. You watch them struggle, you try to help, and somehow 
-                    it makes things worse.
-                  </p>
-                  <p className="text-warm-gray leading-relaxed">
-                    ROOTED helps you understand what's really happening beneath the surface, 
-                    and gives you practical ways to support without adding pressure.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white border-none">
-                <CardContent className="p-10">
-                  <Heart className="h-10 w-10 text-olive mb-6" />
-                  <h3 className="text-2xl font-serif font-semibold text-charcoal mb-4">
-                    For Teens
-                  </h3>
-                  <p className="text-warm-gray leading-relaxed mb-6">
-                    You're not lazy. You're not broken. You're carrying weight that nobody 
-                    else seems to see, and trying harder hasn't worked.
-                  </p>
-                  <p className="text-warm-gray leading-relaxed">
-                    ROOTED is a space to breathe, to understand yourself better, and to 
-                    build the kind of quiet strength that stays with you beyond exams.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-4">
+                Not ready to join? Start here.
+              </h2>
+              <p className="text-warm-gray text-lg mb-8">
+                A free practical guide for teens who feel stuck, stressed, or behind—and 
+                the parents who want to help.
+              </p>
+              <Link href="/free-starter-kit">
+                <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark">
+                  Get the Free Starter Kit
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -296,25 +240,19 @@ export default function HomePage() {
         <section className="section-padding bg-olive-dark text-cream">
           <div className="container-main text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
-              Ready to find your roots?
+              Your teen doesn't need more pressure.
             </h2>
             <p className="text-cream/80 text-lg leading-relaxed mb-10">
-              Whether you're ready to join ROOTED Circle or just want to explore, 
-              we're here. No hard sell, no pressure—just a conversation about 
-              what might help.
+              They need someone who understands overwhelm—and knows how to help them find their way through it. 
+              ROOTED Circle offers weekly mentoring, practical study support, and quiet encouragement 
+              for teens who feel stuck. No shame. No gimmicks. Just consistent guidance from someone 
+              who genuinely cares.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apply">
-                <Button size="lg" className="bg-cream text-olive hover:bg-beige w-full sm:w-auto">
-                  Apply for ROOTED Circle
-                </Button>
-              </Link>
-              <Link href="/free-starter-kit">
-                <Button size="lg" variant="secondary" className="bg-transparent border-cream text-cream hover:bg-cream/10 w-full sm:w-auto">
-                  Start with Free Kit
-                </Button>
-              </Link>
-            </div>
+            <Link href="/apply">
+              <Button size="lg" className="bg-cream text-olive hover:bg-beige">
+                Apply for ROOTED Circle
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

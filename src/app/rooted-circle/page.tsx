@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navigation } from '@/components/layout/navigation'
 import { Footer } from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { CheckCircle, ArrowRight, Users, Heart, BookOpen, Shield, Moon, Sparkles, MessageCircle } from 'lucide-react'
+import { CheckCircle, ArrowRight, Users, Heart, BookOpen, Shield, Moon, Sparkles, MessageCircle, Focus as FocusIcon } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'ROOTED Circle | Weekly Teen Mentorship Programme',
+  description: 'Small-group weekly mentoring for overwhelmed teens. Build study habits, emotional resilience, and quiet confidence. Apply for ROOTED Circle today.',
+}
 
 const teenBenefits = [
   {
@@ -57,13 +63,24 @@ const parentBenefits = [
   },
 ]
 
-const transformation = [
-  "Teens learn to understand their own emotional landscape",
-  "Build resilience before crisis hits",
-  "Create sustainable routines that honour rest",
-  "Develop quiet confidence independent of grades",
-  "Connect faith to daily life",
-  "Parents learn to support without adding pressure",
+const whoItsFor = [
+  "Procrastinate constantly and leave everything to the last minute",
+  "Feel behind and don't know how to catch up",
+  "Shut down or get emotional when schoolwork piles up",
+  "Struggle to focus and get distracted easily",
+  "Feel anxious or panicked before tests and exams",
+  "Have lost confidence in their ability to succeed",
+  "Know what they should do but can't seem to start",
+  "Need structure, encouragement, and someone who actually gets it",
+]
+
+const framework = [
+  { step: "01", title: "Understand the overwhelm", desc: "We start by naming what's really going on, not just the symptoms" },
+  { step: "02", title: "Build sustainable structure", desc: "Simple routines that fit real life, not impossible ideals" },
+  { step: "03", title: "Learn to focus in a distracted world", desc: "Practical strategies for attention, environment, and energy" },
+  { step: "04", title: "Develop confidence under pressure", desc: "Tools for exams, deadlines, and moments that feel too big" },
+  { step: "05", title: "Strengthen emotional resilience", desc: "How to recover from bad days, setbacks, and disappointment" },
+  { step: "06", title: "Grow into consistency", desc: "Moving from short bursts of effort to steady, lasting habits" },
 ]
 
 export default function RootedCirclePage() {
@@ -79,32 +96,28 @@ export default function RootedCirclePage() {
           <div className="container-main relative z-10 py-24">
             <div className="max-w-2xl">
               <p className="text-olive font-medium text-sm tracking-wide mb-4">
-                The Flagship Programme
+                Weekly mentoring for overwhelmed teens
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-charcoal leading-tight mb-6">
-                ROOTED Circle
+                Structured weekly mentoring for teens who feel stuck
               </h1>
               
               <p className="text-xl text-warm-gray mb-8 leading-relaxed">
-                A monthly mentorship community where teens build unshakeable inner foundations—
-                and parents learn to walk alongside them with confidence.
-              </p>
-              
-              <p className="text-2xl font-serif text-olive mb-10">
-                R1,497/month
+                ROOTED Circle is a small-group mentoring membership where overwhelmed teens meet 
+                weekly for live guidance, practical study support, and resilience coaching.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/apply">
                   <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark w-full sm:w-auto">
-                    Apply Now
+                    Apply for ROOTED Circle
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/free-starter-kit">
                   <Button variant="outline" size="lg" className="border-olive text-olive hover:bg-olive/5 w-full sm:w-auto">
-                    Start with Free Kit
+                    Get the Free Starter Kit
                   </Button>
                 </Link>
               </div>
@@ -121,18 +134,13 @@ export default function RootedCirclePage() {
                   What is ROOTED Circle?
                 </h2>
                 <p className="text-warm-gray text-lg leading-relaxed mb-6">
-                  ROOTED Circle is a selective monthly membership programme for teens who 
-                  are ready to build something deeper than academic success—inner foundation 
-                  that stays with them long after exams are over.
+                  ROOTED Circle is a small-group mentoring membership where overwhelmed teens meet 
+                  weekly for live guidance, practical study support, and resilience coaching.
                 </p>
                 <p className="text-warm-gray text-lg leading-relaxed mb-6">
-                  Through weekly group mentorship sessions, a structured resilience framework, 
-                  and an engaged parent community, we walk alongside families through the 
-                  ups and downs of the teenage years.
-                </p>
-                <p className="text-charcoal text-lg leading-relaxed">
-                  This isn't tutoring. This isn't motivation. This is real, relational 
-                  work that changes how teens see themselves and how parents support them.
+                  This isn't tutoring. It's not a course you watch alone. It's consistent, caring 
+                  mentorship that helps your teen build the habits, routines, and emotional strength 
+                  they need to show up for themselves—week after week.
                 </p>
               </div>
               
@@ -142,14 +150,7 @@ export default function RootedCirclePage() {
                     Who is ROOTED Circle for?
                   </h3>
                   <ul className="space-y-4">
-                    {[
-                      "Teens aged 13-18 who feel overwhelmed",
-                      "Teens who are capable but stuck",
-                      "Teens who push themselves but don't feel 'enough'",
-                      "Parents who want to help but don't know how",
-                      "Families who value faith and emotional depth",
-                      "Families ready to commit to real change",
-                    ].map((item, i) => (
+                    {whoItsFor.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-warm-gray">
                         <CheckCircle className="h-5 w-5 text-olive flex-shrink-0 mt-0.5" />
                         <span>{item}</span>
@@ -162,19 +163,19 @@ export default function RootedCirclePage() {
           </div>
         </section>
 
-        {/* For Teens */}
-        <section className="section-padding bg-cream">
+        {/* What's Included */}
+        <section className="section-padding bg-linen">
           <div className="container-main">
             <div className="text-center mb-16">
-              <p className="text-olive font-medium text-sm tracking-wide mb-3">
-                For Teens
-              </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal">
-                What you'll receive
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-4">
+                What's included
               </h2>
+              <p className="text-warm-gray max-w-xl mx-auto">
+                Everything your teen needs to move from overwhelmed to grounded.
+              </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {teenBenefits.map((benefit, i) => (
                 <Card key={i} className="bg-white border-none">
                   <CardContent className="p-8">
@@ -185,6 +186,31 @@ export default function RootedCirclePage() {
                     <p className="text-warm-gray text-sm leading-relaxed">
                       {benefit.description}
                     </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The Framework */}
+        <section className="section-padding bg-olive text-cream">
+          <div className="container-main">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-4 text-center">
+              How we help teens move from overwhelmed to grounded
+            </h2>
+            <p className="text-cream/80 text-center mb-12 max-w-2xl mx-auto">
+              This isn't a rigid programme. It's a mentoring relationship that meets your teen 
+              where they are and helps them grow from there.
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {framework.map((item, i) => (
+                <Card key={i} className="bg-olive-dark/30 border-0">
+                  <CardContent className="p-6">
+                    <span className="text-4xl font-serif font-bold text-cream/20 mb-4 block">{item.step}</span>
+                    <h3 className="text-lg font-serif font-semibold text-cream mb-2">{item.title}</h3>
+                    <p className="text-cream/70 text-sm">{item.desc}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -234,129 +260,48 @@ export default function RootedCirclePage() {
           </div>
         </section>
 
-        {/* The Transformation */}
-        <section className="section-padding bg-olive text-cream">
+        {/* Pricing */}
+        <section className="section-padding bg-sand/30">
           <div className="container-main">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
-                  The transformation
-                </h2>
-                <p className="text-cream/80 text-lg leading-relaxed mb-8">
-                  This isn't about getting better grades (though that often happens). 
-                  It's about something more lasting—teens who know who they are, 
-                  who can rest without guilt, and who face life's challenges with 
-                  quiet, unshakeable confidence.
-                </p>
-                <ul className="space-y-3">
-                  {transformation.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-cream/90">
-                      <Sparkles className="h-5 w-5 text-sage flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
+            <div className="max-w-xl mx-auto text-center">
+              <p className="text-olive font-medium text-sm tracking-wide mb-4">Founding Member Pricing</p>
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal mb-4">
+                R1,497/month
+              </h2>
+              <p className="text-warm-gray mb-8">
+                ROOTED Circle is premium, small-group mentoring—not a course you watch alone 
+                or a once-off workshop.
+              </p>
+              <div className="text-left max-w-md mx-auto mb-8">
+                <p className="text-charcoal font-medium mb-4">Founding members get:</p>
+                <ul className="space-y-2 text-warm-gray">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-olive" />
+                    Weekly live mentoring sessions
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-olive" />
+                    Ongoing accountability and support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-olive" />
+                    Direct access to guidance and encouragement
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-olive" />
+                    A structured path through overwhelm to confidence
+                  </li>
                 </ul>
               </div>
-              
-              <Card className="bg-olive-dark/30 border-0">
-                <CardContent className="p-10">
-                  <h3 className="text-xl font-serif font-semibold text-cream mb-6 text-center">
-                    Ready to begin?
-                  </h3>
-                  <div className="text-center mb-8">
-                    <p className="text-cream/60 mb-2">Investment</p>
-                    <p className="text-4xl font-serif font-bold text-cream">R1,497</p>
-                    <p className="text-cream/70">per month</p>
-                  </div>
-                  <ul className="space-y-2 text-cream/80 text-sm mb-8">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-sage" />
-                      4+ live sessions per month
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-sage" />
-                      Full resource library access
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-sage" />
-                      Monthly parent workshop
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-sage" />
-                      Teen + parent community
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-sage" />
-                      Direct access to Liza
-                    </li>
-                  </ul>
-                  <Link href="/apply">
-                    <Button className="w-full bg-cream text-olive hover:bg-beige">
-                      Apply for ROOTED Circle
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Application Process */}
-        <section className="section-padding bg-cream">
-          <div className="container-main">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-charcoal text-center mb-6">
-                How to join
-              </h2>
-              <p className="text-warm-gray text-lg text-center mb-12 max-w-xl mx-auto">
-                ROOTED Circle is selective because we keep groups small and genuine. 
-                The application process helps us ensure every family is a good fit.
+              <p className="text-sm text-warm-gray mb-8">
+                Spots are limited to keep the group small and the support personal.
               </p>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    step: "01",
-                    title: "Submit your application",
-                    description: "Fill out a brief form telling us about your teen and your family. No wrong answers—we just want to understand if ROOTED is the right fit.",
-                  },
-                  {
-                    step: "02",
-                    title: "We'll reach out",
-                    description: "After reviewing your application, we'll schedule a call to chat further, answer questions, and see if we're the right match.",
-                  },
-                  {
-                    step: "03",
-                    title: "Begin your journey",
-                    description: "Once accepted, you'll get immediate access to resources and be welcomed into the next available group cohort.",
-                  },
-                ].map((item, i) => (
-                  <Card key={i} className="bg-white border-none">
-                    <CardContent className="p-8 flex gap-6">
-                      <span className="text-4xl font-serif font-bold text-olive/30 flex-shrink-0">
-                        {item.step}
-                      </span>
-                      <div>
-                        <h3 className="text-xl font-serif font-semibold text-charcoal mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-warm-gray leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-              
-              <div className="text-center mt-12">
-                <Link href="/apply">
-                  <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark">
-                    Start Your Application
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
+              <Link href="/apply">
+                <Button size="lg" className="bg-olive text-cream hover:bg-olive-dark">
+                  Apply for ROOTED Circle
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -414,21 +359,23 @@ export default function RootedCirclePage() {
         <section className="section-padding bg-olive-dark text-cream">
           <div className="container-main text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
-              Ready to find your roots?
+              Your teen doesn't need more pressure.
             </h2>
             <p className="text-cream/80 text-lg leading-relaxed mb-10">
-              Applications are currently open for a limited number of families. 
-              If you're feeling the pull, that's often a sign something is ready to shift.
+              They need someone who understands overwhelm—and knows how to help them find their way through it. 
+              ROOTED Circle offers weekly mentoring, practical study support, and quiet encouragement 
+              for teens who feel stuck. No shame. No gimmicks. Just consistent guidance from someone 
+              who genuinely cares.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/apply">
                 <Button size="lg" className="bg-cream text-olive hover:bg-beige w-full sm:w-auto">
-                  Apply Now
+                  Apply for ROOTED Circle
                 </Button>
               </Link>
               <Link href="/free-starter-kit">
                 <Button size="lg" variant="secondary" className="bg-transparent border-cream text-cream hover:bg-cream/10 w-full sm:w-auto">
-                  Start with Free Kit
+                  Get the Free Starter Kit
                 </Button>
               </Link>
             </div>

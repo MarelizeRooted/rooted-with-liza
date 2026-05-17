@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navigation } from '@/components/layout/navigation'
 import { Footer } from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { GraduationCap, Heart, BookOpen, Award, ArrowRight, Sparkles } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'About Liza | ROOTED Circle Study Mentor',
+  description: 'Meet Liza—homeschooling mom, educator, and study mentor helping overwhelmed teens build confidence, healthy habits, and emotional resilience through practical weekly mentoring.',
+}
 
 export default function AboutPage() {
   return (
@@ -21,11 +27,10 @@ export default function AboutPage() {
                 About Liza
               </p>
               <h1 className="text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-6">
-                Rooted in something deeper
+                Hi, I'm Liza.
               </h1>
               <p className="text-warm-gray text-lg leading-relaxed">
-                Rooted with Liza exists because I believe lasting change doesn't come 
-                from trying harder—it comes from going deeper.
+                I'm a homeschooling mom, educator, and study mentor. For years, I've worked with students in Grades 6–9, teaching Maths, Afrikaans, Social Sciences, and—most importantly—how to actually study.
               </p>
             </div>
           </div>
@@ -35,74 +40,27 @@ export default function AboutPage() {
         <section className="section-padding bg-white">
           <div className="container-main">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-serif font-semibold text-charcoal mb-8">
-                The heart behind Rooted
-              </h2>
-              
               <div className="space-y-6 text-warm-gray leading-relaxed">
                 <p>
-                  I didn't set out to build a programme. I set out to understand why so many 
-                  capable teens were struggling—not because they couldn't learn, but because 
-                  nobody had taught them <em>how</em> to learn in a way that actually works.
+                  I've sat across from teens who felt hopeless. Who were convinced they were stupid. 
+                  Who had given up before they even started. And I've watched what happens when someone 
+                  finally helps them untangle the overwhelm and find a way forward.
                 </p>
 
                 <p>
-                  After years in Intermediate and Senior Phase education, I watched the same 
-                  patterns repeat. Students who wanted to succeed but didn't have the systems to 
-                  get there. Parents who wanted to help but didn't know where to start. Everyone 
-                  was trying harder, but trying harder wasn't the answer.
+                  I created ROOTED Circle because I believe struggling teens don't need more pressure. 
+                  They need patient guidance, practical tools, and someone who sees them clearly—not 
+                  just their grades.
                 </p>
 
                 <p>
-                  My theology studies taught me something I'll never forget: people don't change 
-                  because they're told to. They change when they understand the <em>why</em>—when 
-                  they have tools that fit their reality, and when someone walks alongside them 
-                  without judgment.
+                  I've studied theology, trained in learning support and study techniques, and spent 
+                  years learning what actually helps young people build resilience. But more than any 
+                  qualification, I bring this: I care deeply, I pay attention, and I show up.
                 </p>
 
-                <p>
-                  Volunteer teen counselling showed me the other side—the emotional toll that 
-                  academic pressure takes on young people. Anxiety, burnout, feelings of never 
-                  being enough. Not because they're failing, but because they're overwhelmed 
-                  by expectations they don't have the foundation to meet.
-                </p>
-
-                <p>
-                  So I went deeper. I studied learning science—how the teenage brain actually 
-                  works, how to work <em>with</em> it instead of against it. I completed specialized 
-                  training including the "Highly Effective Study/Learning Techniques Course for 
-                  Teachers" and "The Ultimate Solutions to Barriers Experienced by Teachers" 
-                  through Dr Emsie Rheeders Education.
-                </p>
-
-                <p className="text-charcoal font-medium">
-                  What I learned wasn't complicated. But "simple" doesn't mean "easy"—and it 
-                  definitely wasn't being taught anywhere.
-                </p>
-
-                <p>
-                  Rooted with Liza exists because teens need someone to teach them HOW to learn, 
-                  not just WHAT to learn. And parents need guidance on how to support that 
-                  process without adding to the pressure.
-                </p>
-
-                <p>
-                  But here's what I've also learned: systems and strategies only get you so far. 
-                  <em> Real</em> change happens when you address the heart—building the kind of 
-                  quiet, unshakeable foundation that holds steady whether you're in exam season 
-                  or not.
-                </p>
-
-                <p>
-                  That foundation is spiritual, emotional, and practical all at once. It's about 
-                  understanding who you are beyond your grades, knowing your worth isn't tied to 
-                  your performance, and building resilience before you need it—not after you've 
-                  already broken.
-                </p>
-
-                <p className="text-charcoal font-medium">
-                  This is work I'm deeply passionate about, because I've seen what happens when 
-                  teens get it right—not just better marks, but genuine peace.
+                <p className="text-charcoal font-medium text-xl">
+                  If your teen feels stuck, I'd be honoured to help.
                 </p>
               </div>
             </div>

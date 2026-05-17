@@ -73,18 +73,14 @@ export default function ApplyPage() {
                   <CheckCircle className="h-10 w-10 text-olive" />
                 </div>
                 <h1 className="text-3xl font-serif font-semibold text-charcoal mb-4">
-                  Application Received
+                  Thanks for applying.
                 </h1>
                 <p className="text-warm-gray leading-relaxed mb-6">
-                  Thank you for your interest in ROOTED Circle. I've received your application 
-                  and will review it carefully.
-                </p>
-                <p className="text-warm-gray leading-relaxed mb-8">
-                  You'll hear from me within a few days. If you don't see an email, please 
-                  check your spam folder, or feel free to reach out directly.
+                  I'll be in touch within 48 hours to talk about whether ROOTED Circle 
+                  is the right fit for your teen.
                 </p>
                 <p className="text-charcoal font-medium">
-                  I look forward to learning more about your family.
+                  If you don't see an email from me, please check your spam folder.
                 </p>
                 <p className="text-olive mt-2">— Liza</p>
                 <div className="mt-8">
