@@ -1,413 +1,339 @@
-# ROOTED WITH LIZA - Platform Specification
+# ROOTED WITH LIZA - Redesigned Platform Specification
 
 ## 1. Concept & Vision
 
-**Rooted With Liza** is a structured resilience and study support platform for overwhelmed teens and their parents. Unlike motivational blogs or life-coaching sites, it provides tangible, actionable digital systems—study frameworks, exam prep tools, resilience training, and parental guidance—delivered through a membership-based business model.
+**Rooted With Liza** is a faith-grounded, emotionally intelligent resilience and study mentoring platform for overwhelmed teens and their parents in South Africa. Rooted in the belief that lasting change comes from internal foundation—not external pressure—we offer one flagship programme: **ROOTED Circle**.
 
-The platform feels like a calm, grounded sanctuary: warm paper textures, muted earth tones, and Japandi-inspired minimalism. It's honest about the struggle, practical in its solutions, and credible through the founder's background in education and teen counseling.
+This is not another motivational programme. ROOTED Circle is a monthly mentorship community where teens learn to build unshakeable inner foundations—emotional resilience, sustainable study systems, and the quiet confidence that comes from knowing who they are. We walk alongside parents too, helping them understand, support, and connect with their teens without adding pressure.
+
+The platform feels like a breath of calm in a chaotic world: Japandi-inspired warmth, wabi-sabi acceptance of imperfection, and the quiet beauty of natural materials. It's a sanctuary—warm paper textures, muted earth tones, generous whitespace, and the sense that "you are welcome here, just as you are."
 
 ---
 
 ## 2. Design Language
 
 ### Aesthetic Direction
-Soft minimal Japandi-inspired aesthetic with paper textures. Think: a well-organized study desk in a sunlit room, not a corporate wellness app.
+**Japandi Wabi-Sabi Minimalism** — The intersection of Japanese and Scandinavian simplicity, embracing imperfection and natural beauty. Think: morning light through linen curtains, a worn wooden desk, a cup of tea beside handwritten notes. Calm, unhurried, grounded.
 
 ### Color Palette
 ```
---color-olive:       #6B7B5C  /* Primary - muted olive green */
---color-olive-light: #8A9B7C  /* Primary light */
---color-olive-dark:  #4A5640  /* Primary dark */
---color-sand:        #E8E0D5  /* Secondary - warm sand */
---color-cream:       #F7F4F0  /* Background - cream */
---color-beige:       #D4C4A8  /* Accent beige */
---color-charcoal:    #3D3D3D  /* Text - soft charcoal */
---color-warm-gray:   #7A7A6C  /* Secondary text */
---color-terracotta:  #C4785A  /* Accent - warm terracotta */
---color-blush:       #D4A5A5  /* Soft accent */
+--color-olive:        #6B7B5C  /* Primary - muted olive (rooted, natural) */
+--color-olive-light:  #8A9B7C  /* Primary light */
+--color-olive-dark:   #4A5640  /* Primary dark */
+--color-sage:         #9CAF88  /* Secondary - soft sage green */
+--color-sand:         #E8E0D5  /* Warm sand */
+--color-stone:        #C9C0B1  /* Stone */
+--color-linen:        #F5F1EB  /* Linen white */
+--color-cream:        #FAF8F5  /* Background - warm cream */
+--color-beige:        #D4C4A8  /* Accent beige */
+--color-charcoal:     #3D3D3D  /* Text - soft charcoal */
+--color-warm-gray:    #7A7A6C  /* Secondary text */
+--color-terracotta:   #C4785A  /* Accent - warm terracotta */
+--color-blush:        #D4A5A5  /* Soft accent */
+--color-gold:         #B8956E  /* Subtle gold accent - sparingly */
 ```
 
 ### Typography
-- **Headings**: "Playfair Display" (serif) - elegant, grounded
-- **Body**: "Inter" (sans-serif) - clean, readable
-- **Accent**: "Cormorant Garamond" (serif) - for quotes and special text
+- **Headings**: "Playfair Display" (serif) — elegant, grounded, trustworthy
+- **Body**: "Inter" (sans-serif) — clean, readable, modern
+- **Accent/Quotes**: "Cormorant Garamond" (serif) — for quotes, special moments, literary feel
+- **Scale**: Generous sizing, never cramped. Headlines breathe.
 
 ### Spatial System
 - Base unit: 4px
-- Section padding: 80px vertical (desktop), 48px (mobile)
-- Container max-width: 1200px
-- Card padding: 24px
-- Component spacing: 16px
+- Section padding: 96px vertical (desktop), 64px (mobile)
+- Container max-width: 1120px (slightly narrower for intimacy)
+- Card padding: 32px (generous)
+- Component spacing: 24px
+- Generous whitespace — let content breathe
 
 ### Motion Philosophy
-- Subtle fade-ins on scroll (opacity 0→1, 600ms ease-out)
-- Hover states: gentle lift with shadow (translateY -2px, 200ms)
-- Page transitions: soft fade (300ms)
-- No bouncy animations—calm and measured
+- **Subtle and purposeful** — No bouncy animations. Everything moves like a slow breath.
+- Fade-ins on scroll: opacity 0→1, 800ms ease-out (slower, more contemplative)
+- Hover states: gentle lift with soft shadow (translateY -2px, 300ms ease)
+- Page transitions: calm fade (400ms)
+- Scroll animations: gentle rise (translateY 20px→0)
 
 ### Visual Assets
-- Paper texture overlays (subtle, 5-10% opacity)
-- Soft drop shadows (0 4px 12px rgba(0,0,0,0.08))
-- Rounded corners: 8px for cards, 4px for buttons
-- No stock photo clichés—use abstract shapes and textural elements
+- Paper texture overlays (very subtle, 3-5% opacity)
+- Soft, diffused drop shadows (0 4px 20px rgba(0,0,0,0.06))
+- Rounded corners: 12px for cards (softer), 6px for buttons
+- Abstract organic shapes as decorative elements
+- Photography: warm, natural light, real moments—not staged
+- No harsh lines or corporate stock imagery
 
 ---
 
 ## 3. Layout & Structure
 
-### Site Architecture
+### Simplified Site Architecture
 ```
 / (Home)
-├── /membership (Membership Tiers)
-├── /shop (Digital Products)
-├── /bootcamps (Programs)
-├── /workshops (Parent Workshops)
-├── /about (Founder Story)
-├── /blog (Resources & Articles)
-├── /lead-magnet (Free Starter Kit)
-├── /checkout (Stripe Integration)
+├── /rooted-circle (Flagship Programme - R1497/month)
+├── /free-starter-kit (Lead Magnet)
+├── /about (Founder Story & Heart)
+├── /apply (Application/Interest Form)
 ├── /login
 ├── /signup
 ├── /dashboard (Member Portal)
 │   ├── /dashboard/resources
-│   ├── /dashboard/plan
-│   └── /dashboard/account
+│   ├── /dashboard/sessions
+│   ├── /dashboard/account
+│   └── /dashboard/membership
 └── /admin (Platform Management)
-    ├── /admin/dashboard
-    ├── /admin/users
-    ├── /admin/products
-    ├── /admin/memberships
-    ├── /admin/bootcamps
-    ├── /admin/workshops
-    ├── /admin/blog
-    ├── /admin/leads
-    └── /admin/analytics
 ```
 
+**Removed Pages:**
+- /membership (replaced by /rooted-circle)
+- /shop (products absorbed into member benefits)
+- /bootcamps (now part of ROOTED Circle)
+- /workshops (now part of ROOTED Circle)
+- /blog (resources now in member dashboard)
+
 ### Page Rhythm
-- Hero sections: expansive, 60vh minimum
-- Content sections: alternating full-width and contained
-- CTAs: contextual, not aggressive
-- White space: generous, never cramped
+- Hero sections: expansive, 70vh minimum, lots of breathing room
+- Content sections: contained width, never overwhelming
+- CTAs: gentle nudges, not aggressive sales tactics
+- White space: abundant—never crowded or busy
 
 ### Responsive Strategy
 - Mobile-first approach
 - Breakpoints: 640px (sm), 768px (md), 1024px (lg), 1280px (xl)
-- Stack layouts on mobile, grid on desktop
-- Touch-friendly tap targets (min 44px)
+- Stack layouts on mobile, gentle grid on desktop
+- Touch-friendly tap targets (min 48px)
+- Images scale gracefully, never distorted
 
 ---
 
-## 4. Features & Interactions
+## 4. ROOTED Circle — The Flagship Programme
 
-### Lead Magnet System
-**"Overwhelmed Teen Starter Kit"**
-- 5-day reset plan
-- Study schedule template
-- Procrastination fix guide
-- Exam stress toolkit
-- Parent communication guide
-- Resilience mini exercise
+### The Offer
+**ROOTED Circle** is a monthly membership at **R1,497/month**—a mentorship community for teens who are ready to build unshakeable inner foundations.
 
-**Capture Flow:**
-1. Landing page CTA → Lead magnet form
-2. Email + WhatsApp opt-in
-3. Instant download access + email sequence
-4. Tag for email segmentation
+### What ROOTED Circle Includes
 
-### Membership Tiers
+#### For Teens:
+- **Weekly Group Mentorship Sessions** — Alternating teen-focused and family-inclusive sessions, held in a small group setting (max 12 families)
+- **The Resilience Framework** — A structured programme building emotional regulation, stress management, and inner quiet
+- **Study Systems Training** — Practical, sustainable study methods that work with your brain, not against it
+- **Monthly Theme Exploration** — Each month focuses on a core topic: identity, purpose, rest, boundaries, etc.
+- **Private Community Access** — A safe space to connect with other teens on the same journey
+- **Resource Library** — Curated tools, worksheets, and guides available 24/7
 
-#### ROOTED CORE - R299/month
-- Monthly study system pack
-- Printable planners
-- Basic exam kits
-- Resilience worksheets
+#### For Parents:
+- **Monthly Parent Workshop** — Deep-dive sessions on understanding your teen, supporting without enabling, and creating home environments that nurture growth
+- **Parent Community** — Connect with other parents walking the same path
+- **Direct Access to Liza** — Monthly Q&A sessions for parent questions
+- **Family Implementation Guides** — Practical ways to support your teen's growth at home
+
+### The Transformation
+Teens don't just get study tips—they learn to:
+- Understand their own emotional landscape
+- Build resilience before crisis hits
+- Create sustainable routines that honour rest
+- Develop quiet confidence independent of grades
+- Connect their faith to their daily lives
+- Parent differently too—with less fear, more trust
+
+### Application Required
+ROOTED Circle is selective. We accept families through an application process because:
+- This work requires commitment from both teen and parent
+- Small groups mean genuine connection—we vet for readiness
+- We want to ensure every family gets genuine value
+
+### Pricing Philosophy
+R1,497/month is an investment in transformation, not a transaction. This includes:
+- 4+ live sessions per month
+- Full resource library
+- Parent workshop + Q&A
 - Community access
-- Monthly group teaching session
-- Parent guidance PDFs
-
-#### ROOTED PLUS - R599/month (Main Tier)
-Everything in Core PLUS:
-- Weekly live group sessions (alternating teen + parent focus)
-- Full exam prep library
-- Full digital resource vault
-- Monthly parent workshop included
-- Teen accountability sessions
-- Burnout recovery systems
-- Productivity + study frameworks
-- Priority Q&A access
-
-#### ROOTED FAMILY - R999/month
-Everything in Plus PLUS:
-- Small group coaching sessions (limited capacity)
-- Personalized study planning feedback
-- Bootcamps included
-- Priority support
-- Family implementation strategy sessions
-- Early access to new resources
-
-### Shop System
-Products:
-- Exam kits
-- Printable planners
-- Resilience journals
-- Study systems
-- Focus trackers
-- Burnout recovery kits
-- Revision packs
-
-**Pricing Logic:**
-- Non-members: full price
-- Core members: 10% discount
-- Plus members: 20% discount or included
-- Family members: full access or heavily discounted
-
-### Bootcamps
-Standalone programs (R799-R1499):
-- Exam Reset Bootcamp (4 weeks)
-- Study Systems Bootcamp
-- Burnout Recovery Bootcamp
-
-**Access Rules:**
-- Core: discount access
-- Plus: 1 included per quarter
-- Family: full access
-
-### Parent Workshops
-- Monthly topics rotating
-- Included in Plus/Family
-- Standalone purchase option
-- Live session + recording access
+- Direct mentorship support
 
 ---
 
-## 5. Component Inventory
+## 5. Free Starter Kit — The Lead Magnet
+
+### Purpose
+The **Free Starter Kit** is a low-commitment entry point for families exploring Rooted. It provides immediate value while introducing our philosophy.
+
+### What's Included
+- **The Overwhelmed Teen Reset Guide** — A 5-day gentle reset plan
+- **The Sunday Reset Template** — A printable weekly planning tool
+- **The Parent Pause** — A short guide for parents on regulated breathing and presence
+- **The First Step Quiz** — A reflection tool to understand your teen's current state
+- **Welcome Series** — 3 short emails introducing Rooted's heart and approach
+
+### Capture Flow
+1. Landing page headline resonates with parent's heart
+2. Brief form: Name, Email, WhatsApp (optional)
+3. Instant download access
+4. Welcome email with next steps
+5. Gentle follow-up sequence (not aggressive)
+
+---
+
+## 6. Component Inventory
 
 ### Navigation
-- Sticky header with logo, nav links, CTA button
-- Mobile: hamburger menu with slide-out drawer
-- States: default, scrolled (compact), mobile-open
+- **Desktop**: Logo left, simple nav links center, "Apply" CTA right
+- **Mobile**: Logo left, hamburger right, slide-out drawer
+- **States**: default, scrolled (slightly more background), mobile-open
+- **Style**: Clean, minimal, no unnecessary decorations
 
 ### Hero Section
-- Large headline (emotional but grounded)
-- Subheadline (problem/solution clarity)
-- Primary CTA + secondary link
-- Subtle background texture
+- Large headline (warm invitation, not a sales pitch)
+- Subheadline (clear value proposition in plain language)
+- Primary CTA + optional secondary link
+- Subtle organic shape or warm gradient background
+- Generous vertical padding
 
-### Membership Card
-- Tier name + price
-- Feature list with checkmarks
-- CTA button
-- "Most Popular" badge for Plus
-- States: default, hover (lift), selected
-
-### Product Card
-- Product image/preview
-- Title + brief description
-- Price (with member pricing if applicable)
-- Quick-add to cart
-- States: default, hover, in-cart
-
-### Lead Magnet Form
-- Headline + description
-- Email input (required)
-- WhatsApp opt-in checkbox
-- Submit button
-- Privacy note
-- States: default, loading, success, error
+### Programme Card (ROOTED Circle)
+- Clean, minimal design
+- Price prominently displayed
+- Key benefits as gentle list
+- "Apply Now" CTA
+- Soft background, no harsh borders
 
 ### Testimonial Card
-- Quote text
-- Author name + role
-- Optional avatar
-- Soft background
+- Quote in accent font (Cormorant Garamond)
+- Author name + brief descriptor
+- Warm background
+- No aggressive styling—let the words speak
 
-### Blog Card
-- Featured image
-- Category tag
-- Title + excerpt
-- Read time
-- Date
-- States: default, hover
+### Lead Magnet Form
+- Warm headline
+- Brief description of what they receive
+- Minimal fields (name, email, whatsapp optional)
+- Single CTA button
+- Privacy reassurance
+- States: default, loading, success, error
 
-### Admin Dashboard Card
-- Metric value (large)
-- Label
-- Trend indicator (optional)
-- Soft background
-
-### Data Table (Admin)
-- Header row
-- Sortable columns
-- Row actions (edit, delete)
-- Pagination
-- Empty state
+### Footer
+- Simple, clean layout
+- Logo + brief mission statement
+- Essential links only
+- Social links subtle
+- Copyright with warmth
 
 ---
 
-## 6. Technical Approach
+## 7. Tone of Voice
 
-### Stack
+### Core Attributes
+- **Grounded** — We speak from experience, not theory
+- **Warm** — Like a conversation with a trusted friend
+- **Honest** — We don't sugarcoat, but we deliver truth gently
+- **Faith-anchored** — Our work is spiritual, even when not explicitly religious
+- **Non-judgmental** — No shame, no pressure, just presence
+- **Hopeful** — We believe change is possible, even when it's hard
+
+### Writing Principles
+- Use "I" and "we" more than "you" (relational, not transactional)
+- Speak to the parent's heart, not just the teen's struggles
+- Acknowledge difficulty without dwelling on it
+- Focus on what's possible, not what's broken
+- Keep language simple—no educational jargon
+- Embrace pauses—short sentences have power
+- UK English throughout
+
+### Phrases to Avoid
+- "Transform your teen today"
+- "Proven formula"
+- "Ultimate guide"
+- "Exclusive offer"
+- "Don't miss out"
+- "Limited time"
+- "Success stories"
+- "Results may vary" (too clinical)
+
+### Phrases to Embrace
+- "Walk alongside"
+- "At your own pace"
+- "Gentle reset"
+- "Quiet confidence"
+- "Unshakeable foundations"
+- "At the heart of"
+- "Rooted in"
+- "You are not alone"
+
+---
+
+## 8. Technical Approach
+
+### Stack (Unchanged)
 - **Framework**: Next.js 14 (App Router)
 - **Styling**: TailwindCSS
 - **Language**: TypeScript
 - **Database**: Supabase (PostgreSQL)
 - **Auth**: Supabase Auth
 - **Storage**: Supabase Storage
-- **Payments**: Stripe
-- **Hosting**: Vercel (free tier)
+- **Payments**: Paystack (R1497/month subscriptions)
+- **Hosting**: Vercel
 
-### Database Schema
-
+### Database Updates Needed
 ```
--- users (Supabase Auth integration)
--- profiles (extends auth users)
-
--- membership_tiers
+-- membership_tiers (update)
   - id, name, slug, price_monthly, description, features, sort_order, created_at
+  - Change to single tier: ROOTED Circle - R1497/month
 
--- memberships
+-- memberships (unchanged structure)
   - id, user_id, tier_id, status, stripe_subscription_id, current_period_end, created_at
 
--- products
-  - id, name, slug, description, price, category, images, files, is_active, member_discount_percent, created_at
-
--- orders
-  - id, user_id, status, total, stripe_payment_intent_id, created_at
-
--- order_items
-  - id, order_id, product_id, price_at_purchase
-
--- bootcamps
-  - id, name, slug, description, price, duration, outcomes, schedule, max_participants, is_active, created_at
-
--- bootcamp_enrollments
-  - id, user_id, bootcamp_id, status, enrolled_at, completed_at
-
--- workshops
-  - id, title, slug, description, price, date, duration, is_recurring, parent_topic, is_active, created_at
-
--- workshop_enrollments
-  - id, user_id, workshop_id, status, enrolled_at
-
--- blog_posts
-  - id, title, slug, excerpt, content, featured_image, category, tags, published, published_at, created_at
-
--- lead_magnets
-  - id, email, whatsapp_opt_in, downloaded_at, created_at
-
--- email_subscribers
-  - id, email, status, subscribed_at, unsubscribed_at
-
--- site_analytics
-  - id, event_type, metadata (jsonb), session_id, created_at
+-- intake_applications (new)
+  - id, name, email, phone, teen_age, teen_grade, parent_concerns, how_they_heard, status, created_at
 ```
 
-### API Design
+### Key Pages to Build/Update
+1. Homepage (complete rewrite)
+2. /rooted-circle (new page - R1497/month flagship)
+3. /free-starter-kit (update existing lead-magnet)
+4. /about (update with founder positioning)
+5. /apply (new page - application form)
+6. Navigation (simplify)
+7. Footer (simplify)
 
-**Public Routes:**
-- `GET /api/products` - List active products
-- `GET /api/products/[slug]` - Single product
-- `GET /api/bootcamps` - List bootcamps
-- `GET /api/workshops` - List upcoming workshops
-- `GET /api/blog` - List published posts
-- `GET /api/blog/[slug]` - Single post
-- `POST /api/leads` - Capture lead magnet signup
-- `POST /api/checkout` - Create Stripe checkout session
-
-**Auth Routes (Protected):**
-- `GET /api/user/membership` - Current user's membership
-- `GET /api/user/downloads` - User's purchased files
-- `POST /api/user/update-profile`
-
-**Admin Routes (Role-protected):**
-- `GET /api/admin/users` - List all users
-- `GET /api/admin/users/[id]` - Single user detail
-- `PUT /api/admin/users/[id]` - Update user
-- `DELETE /api/admin/users/[id]` - Delete user
-- `GET/POST/PUT/DELETE /api/admin/products`
-- `GET/POST/PUT/DELETE /api/admin/bootcamps`
-- `GET/POST/PUT/DELETE /api/admin/workshops`
-- `GET/POST/PUT/DELETE /api/admin/blog`
-- `GET /api/admin/leads` - Email capture list
-- `GET /api/admin/analytics` - Site analytics
-
-### Authentication Strategy
-- Supabase Auth with email/password
-- JWT tokens stored in httpOnly cookies
-- Role-based access: 'user', 'admin'
-- Protected routes via middleware
-
-### Storage Strategy
-- Supabase Storage for:
-  - Product files (PDFs, templates)
-  - Blog featured images
-  - Admin uploads
-- Public buckets for downloadable content
-- Signed URLs for protected files
+### Navigation Links (Simplified)
+```
+- Home (/)
+- ROOTED Circle (/rooted-circle)
+- Free Starter Kit (/free-starter-kit)
+- About (/about)
+- Apply (/apply)
+```
 
 ---
 
-## 7. Scalability Principles
+## 9. Launch Priorities
 
-1. **Database-driven content**: All products, bootcamps, workshops loaded from DB—not hardcoded
-2. **CMS-style admin**: Non-technical users can add/edit all content
-3. **Modular membership content**: Tier access controlled via role + tier checks
-4. **Stripe webhooks**: Handle subscriptions, payments, failures automatically
-5. **Caching**: Static generation for public pages, revalidation for dynamic
+### Phase 1: Core Pages (This Implementation)
+- [x] Homepage with new messaging
+- [x] ROOTED Circle page
+- [x] Free Starter Kit page
+- [x] About page
+- [x] Apply page
+- [x] Simplified navigation
+- [x] Updated footer
+- [x] Login/Signup pages
+
+### Phase 2: Member Experience
+- [ ] Dashboard with resources
+- [ ] Session scheduling/information
+- [ ] Community space
+- [ ] Parent portal
+
+### Phase 3: Admin & Operations
+- [ ] Application management
+- [ ] Member management
+- [ ] Payment processing via Paystack
+- [ ] Email sequences
 
 ---
 
-## 8. Admin Dashboard Scope
+## 10. Success Metrics (For Future Reference)
 
-### Dashboard Home
-- Total users
-- Active memberships
-- Monthly revenue
-- Recent signups chart
-- Quick actions
-
-### User Management
-- User list with search/filter
-- User detail: profile, membership, orders, activity
-- Manual membership adjustment
-- Send password reset
-
-### Product Management
-- Product list with categories
-- Create/edit product form
-- Upload files/images
-- Set member pricing
-- Toggle active/inactive
-
-### Bootcamp Management
-- Bootcamp list
-- Create/edit bootcamp
-- Enrollment management
-- Set capacity
-
-### Workshop Management
-- Workshop list
-- Create/edit workshop
-- Schedule management
-- Enrollment tracking
-
-### Blog CMS
-- Post list
-- Rich text editor
-- Image upload
-- Category/tag management
-- Publish/unpublish
-
-### Lead Management
-- Email capture list
-- Export to CSV
-- Segment by download date, opt-in status
-- Integration with email service
-
-### Analytics
-- Page views
-- Conversion tracking
-- Revenue reports
-- Membership trends
-- Popular products
+- Application conversion rate from homepage
+- Free kit download to application conversion
+- Member retention beyond 3 months
+- Parent engagement in workshops
+- Teen satisfaction with sessions
+- Referral rate from existing members
