@@ -38,19 +38,20 @@ export default function ApplyPage() {
     }
 
     try {
-      // In production, this would call the API
-      // await fetch('/api/applications', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const response = await fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Something went wrong')
+      }
       
       setSubmitted(true)
     } catch (err) {
-      setError('Something went wrong. Please try again or contact us directly.')
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again or contact us directly.')
     } finally {
       setLoading(false)
     }
