@@ -54,7 +54,8 @@ function EmailModal({ app, onClose, onSent }: EmailModalProps) {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to send')
+        const data = await response.json()
+        throw new Error(data.error || data.details || 'Failed to send email')
       }
       
       setSent(true)
@@ -63,7 +64,8 @@ function EmailModal({ app, onClose, onSent }: EmailModalProps) {
         onClose()
       }, 1500)
     } catch (err) {
-      setError('Failed to send email. Please try again.')
+      const errorMessage = err instanceof Error ? err.message : 'Failed to send email. Please try again.'
+      setError(errorMessage)
     } finally {
       setSending(false)
     }

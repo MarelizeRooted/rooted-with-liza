@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Resend error:', error)
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: 'Failed to send email', details: error.message || String(error) },
         { status: 500 }
       )
     }
@@ -67,9 +67,10 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     )
   } catch (error) {
-    console.error('Server error:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Server error:', errorMessage)
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      { error: 'An unexpected error occurred', details: errorMessage },
       { status: 500 }
     )
   }
